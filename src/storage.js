@@ -1,18 +1,14 @@
+const updateLocalStorage = (updateList) => {
+  window.localStorage.setItem('list', JSON.stringify(updateList));
+};
 
+const loadLocalStorage = () => {
+  let storage = [];
 
-let updateLocalStorage = updateList => {
-    window.localStorage.setItem('list', JSON.stringify(updateList));
-}
+  if (JSON.parse(localStorage.getItem('list')) == null) {
+    storage = JSON.parse(localStorage.getItem('list'));
+  }
+  return storage;
+};
 
-let loadLocalStorage = () => {
-    if (JSON.parse(localStorage.getItem('list'))) {
-        storage = JSON.parse(localStorage.getItem('list'));
-    } else {
-        storage = [];
-    }
-    return storage;
-}
-
-
-
-export {updateLocalStorage, loadLocalStorage};
+export { updateLocalStorage, loadLocalStorage };

@@ -1,14 +1,11 @@
-let list = [];
+const list = [];
 
 const createList = (items) => {
-    items.forEach(listed => {        
+  items.forEach((listed) => {
     list.push(listed);
-    });
-}
+  });
+};
 
-const getList = () => {
-    return list;
-}
+const getList = () => list;
 
-
-export {createList, getList};
+export { createList, getList };
