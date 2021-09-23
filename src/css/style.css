@@ -94,11 +94,11 @@ button:hover {
   border: none;
   color: darkgray;
   margin: 1rem;
-  font-size:medium;
+  font-size: medium;
   font-weight: lighter;
 }
 
-.clear-button:hover {  
+.clear-button:hover {
   text-decoration: underline;
 }
 
@@ -109,6 +109,5 @@ button:hover {
   font-weight: lighter;
   font-size: medium;
   display: none;
-  background-color: #ffff99;
+  background-color: #ff9;
 }
-

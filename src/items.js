@@ -1,8 +1,8 @@
-import '@fortawesome/fontawesome-free/js/fontawesome'
-import '@fortawesome/fontawesome-free/js/solid'
-import '@fortawesome/fontawesome-free/js/regular'
-import '@fortawesome/fontawesome-free/js/brands'
-import {updateLocalStorage, loadLocalStorage} from './storage';
+import '@fortawesome/fontawesome-free/js/fontawesome';
+import '@fortawesome/fontawesome-free/js/solid';
+import '@fortawesome/fontawesome-free/js/regular';
+import '@fortawesome/fontawesome-free/js/brands';
+import { updateLocalStorage, loadLocalStorage } from './storage';
 import { removeItem, addItem, updateDescription } from './addRemoveItem';
 
 let list = loadLocalStorage();
@@ -25,17 +25,13 @@ const updateStatusItem = (index, text) => {
   }
 };
 
-
 const redraw = () => {
   const uList = document.getElementById('list');
 
   while (uList.firstChild) {
     uList.removeChild(uList.firstChild);
   }
-
-  
-  displayItems();
-}
+};
 
 const displayItems = () => {
   const listContainer = document.getElementById('list');
@@ -50,8 +46,8 @@ const displayItems = () => {
     const edit = document.createElement('input');
 
     liItem.setAttribute('id', list[i].number);
-    rm.setAttribute('class', 'discard')
-    icon.setAttribute('class', 'fas fa-trash')
+    rm.setAttribute('class', 'discard');
+    icon.setAttribute('class', 'fas fa-trash');
     checkBox.setAttribute('type', 'checkbox');
     checkBox.checked = list[i].completed;
     edit.setAttribute('type', 'text');
@@ -65,38 +61,40 @@ const displayItems = () => {
       updateLocalStorage(list);
     });
 
-    rm.addEventListener('click', () =>{
+    rm.addEventListener('click', () => {
       list = removeItem(i, list);
       redraw();
       updateLocalStorage(list);
+      displayItems();
     });
 
-    liItem.addEventListener('click', () => { 
+    liItem.addEventListener('click', () => {
       edit.style.display = 'initial';
       edit.focus();
     });
 
-    edit.addEventListener('focusin', () => {     
+    edit.addEventListener('focusin', () => {
       liItem.style.backgroundColor = '#ffff99';
-      rm.style.backgroundColor = '#ffff99'
+      rm.style.backgroundColor = '#ffff99';
       description.style.display = 'none';
     });
 
-    edit.addEventListener('focusout', () => {     
+    edit.addEventListener('focusout', () => {
       liItem.style.backgroundColor = 'white';
       rm.style.backgroundColor = 'white';
       edit.style.display = 'none';
       description.style.display = 'initial';
       list = updateDescription(list, i, edit.value);
       redraw();
-      updateLocalStorage(list)
+      displayItems();
+      updateLocalStorage(list);
     });
 
-    edit.addEventListener("keyup", function(event) {
+    edit.addEventListener('keyup', (event) => {
       if (event.code === 'Enter' || event.code === 'NumpadEnter') {
         edit.blur();
       }
-  });
+    });
 
     description.append(content);
     rm.appendChild(icon);
@@ -106,38 +104,36 @@ const displayItems = () => {
     liItem.append(rm);
 
     listContainer.append(liItem);
-  }  
-
+  }
 };
 
 const clearButton = document.getElementById('clear');
 clearButton.addEventListener('click', () => {
-  console.log("cl")
   list = list.filter((completed) => completed.completed !== true);
   redraw();
+  displayItems();
   updateLocalStorage(list);
 });
 
-const  task = document.getElementById('task');
-task.addEventListener("keyup", function(event) {
-    if (event.code === 'Enter' || event.code === 'NumpadEnter') {
-        event.preventDefault();
-        document.getElementById('addTask').click();
-    }
+const task = document.getElementById('task');
+task.addEventListener('keyup', (event) => {
+  if (event.code === 'Enter' || event.code === 'NumpadEnter') {
+    event.preventDefault();
+    document.getElementById('addTask').click();
+  }
 });
 
 const addButton = document.getElementById('addTask');
 addButton.addEventListener('click', () => {
-  if (task.value == "") {
-    alert("The new task must be no empty");
-  }else{
-    list = addItem(list, task.value)
-    task.value = "";
+  if (task.value === '') {
+    alert('The new task must be no empty');
+  } else {
+    list = addItem(list, task.value);
+    task.value = '';
     redraw();
+    displayItems();
     updateLocalStorage(list);
   }
 });
 
-export {
-  displayItems
-};
+export { displayItems };
