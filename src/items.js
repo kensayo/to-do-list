@@ -8,23 +8,23 @@ const createList = (items) => {
   });
 };
 
-const updateStatusItem = (index, text)  => {
-  if (list[index].completed == true) {
-    list[index].completed = false;    
+const textDecorate = (index, text) => {
+  if (list[index].completed === true) {
+    text.style.textDecoration = 'line-through';
+  } else {
+    text.style.textDecoration = 'none';
+  }
+};
+
+const updateStatusItem = (index, text) => {
+  if (list[index].completed === true) {
+    list[index].completed = false;
     textDecorate(index, text);
   } else {
-    list[index].completed = true;    
+    list[index].completed = true;
     textDecorate(index, text);
-  }  
-}
-
-const textDecorate = (index, text) => {
-  if (list[index].completed == true) {
-    text.style.textDecoration = 'line-through';
-  } else {  
-    text.style.textDecoration = 'none';
-  }  
-}
+  }
+};
 
 const displayItems = () => {
   const listContainer = document.getElementById('list');
@@ -55,4 +55,6 @@ const displayItems = () => {
 
 const getList = () => list;
 
-export { createList, getList, list, updateStatusItem, displayItems};
+export {
+  createList, getList, list, updateStatusItem, displayItems,
+};
