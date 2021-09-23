@@ -43,7 +43,7 @@ span {
   text-decoration: overline;
 }
 
-input[type="text"] {
+.addInput {
   width: 100%;
   height: 35px;
   padding: 0.5rem 1rem;
@@ -81,3 +81,34 @@ button:hover {
   background-color: white;
   color: lightgray;
 }
+
+.clear {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f6f6f6;
+}
+
+.clear-button {
+  background-color: #f6f6f6;
+  border: none;
+  color: darkgray;
+  margin: 1rem;
+  font-size:medium;
+  font-weight: lighter;
+}
+
+.clear-button:hover {  
+  text-decoration: underline;
+}
+
+.edit-input {
+  width: max-content;
+  padding: 0 0.5rem;
+  border: none;
+  font-weight: lighter;
+  font-size: medium;
+  display: none;
+  background-color: #ffff99;
+}
+

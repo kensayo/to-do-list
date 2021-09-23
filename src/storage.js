@@ -3,24 +3,7 @@ const updateLocalStorage = (updateList) => {
 };
 
 const loadLocalStorage = () => {
-  let storage = [
-    {
-      description: 'Task 3',
-      completed: true,
-      number: 3,
-    },
-    {
-      description: 'Task 4',
-      completed: false,
-      number: 4,
-    },
-
-    {
-      description: 'Task 1',
-      completed: true,
-      number: 1,
-    },
-  ];
+  let storage = [];
 
   if (JSON.parse(localStorage.getItem('list'))) {
     storage = JSON.parse(localStorage.getItem('list'));
