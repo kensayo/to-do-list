@@ -24,25 +24,4 @@ const items = [
 items.sort((a, b) => a.number - b.number);
 
 item.createList(items);
-
-const displayItems = () => {
-  const listContainer = document.getElementById('list');
-
-  for (let i = 0; i < item.getList().length; i += 1) {
-    const liItem = document.createElement('li');
-    const checkBox = document.createElement('input');
-    const description = document.createElement('span');
-    const content = document.createTextNode(item.getList()[i].description);
-
-    liItem.setAttribute('id', item.getList()[i].number);
-    checkBox.setAttribute('type', 'checkbox');
-
-    description.append(content);
-    liItem.append(checkBox);
-    liItem.append(description);
-
-    listContainer.append(liItem);
-  }
-};
-
-displayItems();
+item.displayItems();
