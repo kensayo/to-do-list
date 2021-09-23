@@ -39,6 +39,10 @@ span {
   text-decoration: none;
 }
 
+.marked {
+  text-decoration: overline;
+}
+
 input[type="text"] {
   width: 100%;
   height: 35px;
