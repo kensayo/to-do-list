@@ -2,6 +2,7 @@ import '@fortawesome/fontawesome-free/js/fontawesome';
 import '@fortawesome/fontawesome-free/js/solid';
 import '@fortawesome/fontawesome-free/js/regular';
 import '@fortawesome/fontawesome-free/js/brands';
+import swal from 'sweetalert';
 import { updateLocalStorage, loadLocalStorage } from './storage';
 import { removeItem, addItem, updateDescription } from './addRemoveItem';
 
@@ -10,6 +11,7 @@ let list = loadLocalStorage();
 const textDecorate = (index, text) => {
   if (list[index].completed === true) {
     text.style.textDecoration = 'line-through';
+  console.log(text);
   } else {
     text.style.textDecoration = 'none';
   }
@@ -31,6 +33,21 @@ const redraw = () => {
   while (uList.firstChild) {
     uList.removeChild(uList.firstChild);
   }
+};
+
+const clickedCheckBox = () => {
+  updateLocalStorage(list);
+};
+
+const deleteItem = (i) => {
+  list = removeItem(i, list);
+  redraw();
+  updateLocalStorage(list);
+};
+
+const updateEdit = (i, value) => {
+  list = updateDescription(list, i, value);
+  updateLocalStorage(list);
 };
 
 const displayItems = () => {
@@ -57,14 +74,12 @@ const displayItems = () => {
     textDecorate(i, description);
 
     checkBox.addEventListener('click', () => {
-      updateStatusItem(i, description);
-      updateLocalStorage(list);
+      updateStatusItem(i, content);
+      clickedCheckBox(i, list, content);
     });
 
     rm.addEventListener('click', () => {
-      list = removeItem(i, list);
-      redraw();
-      updateLocalStorage(list);
+      deleteItem(i);
       displayItems();
     });
 
@@ -84,10 +99,9 @@ const displayItems = () => {
       rm.style.backgroundColor = 'white';
       edit.style.display = 'none';
       description.style.display = 'initial';
-      list = updateDescription(list, i, edit.value);
+      updateEdit(i, edit.value);
       redraw();
       displayItems();
-      updateLocalStorage(list);
     });
 
     edit.addEventListener('keyup', (event) => {
@@ -126,7 +140,7 @@ task.addEventListener('keyup', (event) => {
 const addButton = document.getElementById('addTask');
 addButton.addEventListener('click', () => {
   if (task.value === '') {
-    alert('The new task must be no empty');
+    swal('The new task is empty', 'Make sure to add something you have to do');
   } else {
     list = addItem(list, task.value);
     task.value = '';
@@ -136,4 +150,4 @@ addButton.addEventListener('click', () => {
   }
 });
 
-export { displayItems };
+export default displayItems;

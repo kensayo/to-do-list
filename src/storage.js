@@ -1,5 +1,5 @@
-const updateLocalStorage = (updateList) => {
-  window.localStorage.setItem('list', JSON.stringify(updateList));
+const updateLocalStorage = (updatedList) => {
+  window.localStorage.setItem('list', JSON.stringify(updatedList));
 };
 
 const loadLocalStorage = () => {
