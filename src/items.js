@@ -1,12 +1,10 @@
+import '@fortawesome/fontawesome-free/js/fontawesome'
+import '@fortawesome/fontawesome-free/js/solid'
+import '@fortawesome/fontawesome-free/js/regular'
+import '@fortawesome/fontawesome-free/js/brands'
 import * as str from './storage';
 
-const list = [];
-
-const createList = (items) => {
-  items.forEach((listed) => {
-    list.push(listed);
-  });
-};
+const list = str.loadLocalStorage();
 
 const textDecorate = (index, text) => {
   if (list[index].completed === true) {
@@ -34,8 +32,12 @@ const displayItems = () => {
     const checkBox = document.createElement('input');
     const description = document.createElement('span');
     const content = document.createTextNode(list[i].description);
+    const rm = document.createElement('button');
+    const icon = document.createElement('i');
 
     liItem.setAttribute('id', list[i].number);
+    rm.setAttribute('class', 'discard')
+    icon.setAttribute('class', 'fas fa-trash')
     checkBox.setAttribute('type', 'checkbox');
     checkBox.checked = list[i].completed;
     textDecorate(i, description);
@@ -45,16 +47,23 @@ const displayItems = () => {
       str.updateLocalStorage(list);
     });
 
+    rm.addEventListener('click', () =>{
+
+
+
+    });
+
     description.append(content);
+    rm.appendChild(icon);
     liItem.append(checkBox);
     liItem.append(description);
+    liItem.append(rm);
 
     listContainer.append(liItem);
   }
 };
 
-const getList = () => list;
 
 export {
-  createList, getList, list, updateStatusItem, displayItems,
+  displayItems
 };

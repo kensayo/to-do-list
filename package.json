@@ -13,11 +13,11 @@
   "license": "ISC",
   "dependencies": {
     "@popperjs/core": "^2.10.1",
-    "bootstrap": "^5.1.1",
-    "jquery": "^3.6.0",
-    "lodash": "^4.17.21"
+    "jquery": "^3.6.0"
   },
   "devDependencies": {
+    "@fortawesome/fontawesome-free": "^5.15.4",
+    "@fortawesome/fontawesome-svg-core": "^1.2.36",
     "babel-eslint": "^10.1.0",
     "css-loader": "^6.3.0",
     "eslint": "^7.32.0",
