@@ -12,7 +12,7 @@ const addItem = (list, description) => {
   const item = {
     description,
     completed: false,
-    number: list.length,
+    number: list.length + 1,
   };
 
   list.push(item);
