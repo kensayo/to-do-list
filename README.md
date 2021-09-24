@@ -5,6 +5,8 @@
 
 Minimalist To Do List using vanillla Javascript
 
+![](/img/screenshot.png)
+
 ## Built with
 
 - HTML
@@ -13,20 +15,20 @@ Minimalist To Do List using vanillla Javascript
 
 ### Prerequisites
 
-- Web browser
+- Web Browser
 - Visual Studio Code
+- NodeJS
 
 ### Setup
 
 To get a local copy up and running follow these simple example steps.
 
-Open terminal
-Clone this project by command git clone https://github.com/kensayo/to-do-list.git
-Open index.html in the browser (you can use Live Server extension in Visual Studio Code)
-
+- Open terminal
+- Clone this project by command git clone  ```https://github.com/kensayo/to-do-list.git```
+- Open ```index.html``` in the browser (you can use Live Server extension in Visual Studio Code)
 - Download/Clone the repository files and navigate to root folder 
-- Open terminal and move to the root folder and then to ´´´dist´´´ folder
-- Run ´´´. code´´´ and run live server from VSCode
+- Open terminal and move to the root folder and then to ```dist``` folder
+- Run ```. code``` and run live server from VSCode
 - Open your browser and go to [127.0.0.1](127.0.0.1)
 
 

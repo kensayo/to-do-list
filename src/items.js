@@ -11,7 +11,6 @@ let list = loadLocalStorage();
 const textDecorate = (index, text) => {
   if (list[index].completed === true) {
     text.style.textDecoration = 'line-through';
-  console.log(text);
   } else {
     text.style.textDecoration = 'none';
   }
@@ -25,6 +24,7 @@ const updateStatusItem = (index, text) => {
     list[index].completed = true;
     textDecorate(index, text);
   }
+  updateLocalStorage(list);
 };
 
 const redraw = () => {
@@ -33,10 +33,6 @@ const redraw = () => {
   while (uList.firstChild) {
     uList.removeChild(uList.firstChild);
   }
-};
-
-const clickedCheckBox = () => {
-  updateLocalStorage(list);
 };
 
 const deleteItem = (i) => {
@@ -61,8 +57,10 @@ const displayItems = () => {
     const rm = document.createElement('button');
     const icon = document.createElement('i');
     const edit = document.createElement('input');
+    const listener = document.createElement('div');
 
     liItem.setAttribute('id', list[i].number);
+    listener.setAttribute('class', 'liContainer');
     rm.setAttribute('class', 'discard');
     icon.setAttribute('class', 'fas fa-trash');
     checkBox.setAttribute('type', 'checkbox');
@@ -74,8 +72,9 @@ const displayItems = () => {
     textDecorate(i, description);
 
     checkBox.addEventListener('click', () => {
-      updateStatusItem(i, content);
-      clickedCheckBox(i, list, content);
+      updateStatusItem(i, listener);
+      redraw();
+      displayItems();
     });
 
     rm.addEventListener('click', () => {
@@ -83,7 +82,7 @@ const displayItems = () => {
       displayItems();
     });
 
-    liItem.addEventListener('click', () => {
+    listener.addEventListener('click', () => {
       edit.style.display = 'initial';
       edit.focus();
     });
@@ -111,10 +110,11 @@ const displayItems = () => {
     });
 
     description.append(content);
+    listener.append(description);
+    listener.append(edit);
     rm.appendChild(icon);
     liItem.append(checkBox);
-    liItem.append(description);
-    liItem.append(edit);
+    liItem.append(listener);
     liItem.append(rm);
 
     listContainer.append(liItem);
