@@ -7,6 +7,8 @@ Minimalist To Do List using vanillla Javascript
 
 ![](/img/screenshot.png)
 
+## [Live Version](https://kensayo.github.io/to-do-list/)
+
 ## Built with
 
 - HTML
