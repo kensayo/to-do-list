@@ -26,5 +26,4 @@ const updateDescription = (list, index, description) => {
   return list;
 };
 
-module.exports =   addItem
-//export { updateDescription, removeItem, addItem };
+export { updateDescription, removeItem, addItem };
