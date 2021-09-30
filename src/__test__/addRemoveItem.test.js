@@ -1,14 +1,14 @@
 //const { addItem } = require ('../addRemoveItem');
 //import {jest} from '@jest/globals'
 //const addRem = jest.createMockFromModule('../addRemoveItem')
-import { addItem } from '../addRemoveItem';
-import { updateDescription } from '../addRemoveItem';
+import { addItem, updateDescription, removeItem } from '../addRemoveItem';
 
 const list = [];
 const item1 = { description: 'testing1', completed: false, index: 1};
 const item2 = { description: 'testing2', completed: false, index: 2};
 const index1 = list.length;
 const index2 = list.length;
+document.body.innerHTML = '<ul id="list" class="list-container"></ul>'
 
 describe('Adding test', () => {
     test('adding a test element', () => {
@@ -30,4 +30,15 @@ describe('Updating array test', () => {
         updateDescription(list, index2, 'goodbye');
         expect(list[index2].description).toBe('goodbye');
     })
+});
+
+describe('Deleting array test', () => {
+  test('remove second item from the list', () => {
+      removeItem(list.length - 1, list);
+      expect(list.length).toBe(1);
+  }),
+  test('remove first item from the list', () => {
+      removeItem(list.length - 1,list);
+      expect(list.length).toBe(0);
+  })
 });
