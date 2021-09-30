@@ -16,6 +16,8 @@ const textDecorate = (index, text) => {
   }
 };
 
+list.foreac
+
 const updateStatusItem = (index, text) => {
   if (list[index].completed === true) {
     list[index].completed = false;
