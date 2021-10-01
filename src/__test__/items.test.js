@@ -1,6 +1,7 @@
 import updateStatusItem from '../updateStatus';
 import { loadLocalStorage, updateLocalStorage } from '../storage';
 import localStorage from '../__mocks__/localStorage'
+import clearCompleted from '../clearCompleted';
 
 global.localStorage = new localStorage();
 let list = []
@@ -40,5 +41,13 @@ describe('It updates the status of the status of completed of the item', () => {
     test('change the completed status from true to false', () => {   
         list = updateStatusItem(index, text, list);
         expect(text.style.textDecoration).toBe('line-through');
+    })
+});
+
+describe('It verifies completed tasks', () => {
+    test('removed from the list', () => {   
+        list = clearCompleted(list);
+        const completed = (list.filter((completed) => completed.completed !== false).length == 0) ? true : false;
+        expect(completed).toBe(true);
     })
 });

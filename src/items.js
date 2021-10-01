@@ -5,6 +5,7 @@ import '@fortawesome/fontawesome-free/js/brands';
 import swal from 'sweetalert';
 import { updateLocalStorage, loadLocalStorage } from './storage';
 import updateStatusItem from '../updateStatus';
+import clearCompleted from './clearCompleted';
 import { removeItem, addItem, updateDescription } from './addRemoveItem';
 
 let list = loadLocalStorage();
@@ -107,7 +108,8 @@ const displayItems = () => {
 window.onload = () => {
 const clearButton = document.getElementById('clear');
 clearButton.addEventListener('click', () => {
-  list = list.filter((completed) => completed.completed !== true);
+  list = clearCompleted(list);
+  //list = list.filter((completed) => completed.completed !== true);
   redraw();
   displayItems();
   updateLocalStorage(list);
