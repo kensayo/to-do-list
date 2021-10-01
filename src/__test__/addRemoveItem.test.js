@@ -1,6 +1,3 @@
-// const { addItem } = require ('../addRemoveItem');
-// import {jest} from '@jest/globals'
-// const addRem = jest.createMockFromModule('../addRemoveItem')
 import { addItem, updateDescription, removeItem } from '../addRemoveItem';
 
 const list = [];

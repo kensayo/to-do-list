@@ -150,4 +150,4 @@ addButton.addEventListener('click', () => {
   }
 });
 
-export default displayItems;
+export default {displayItems, updateStatusItem, textDecorate};
