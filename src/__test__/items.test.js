@@ -13,11 +13,13 @@ list = [{
         completed: false,
         number: 2}
     ];
+
+document.innerHTML = '<button id="clear"></button>';
 const index = list.index;
 const text = document.createElement('div');
 text.setAttribute('class', 'liContainer');
 const text2 = document.getElementsByClassName('liContainer');
-//const buttonContainer = document.getElementsByClassName('liContainer');
+const buttonContainer = document.getElementsByClassName('liContainer');
 //text.append(buttonContainer);
 
 describe('Create local Storage', () => {

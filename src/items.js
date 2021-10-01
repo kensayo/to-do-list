@@ -121,6 +121,7 @@ const displayItems = () => {
   }
 };
 
+window.onload = () => {
 const clearButton = document.getElementById('clear');
 clearButton.addEventListener('click', () => {
   list = list.filter((completed) => completed.completed !== true);
@@ -149,5 +150,6 @@ addButton.addEventListener('click', () => {
     updateLocalStorage(list);
   }
 });
+}
 
 export default {displayItems, updateStatusItem, textDecorate};
