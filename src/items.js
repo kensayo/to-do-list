@@ -4,28 +4,10 @@ import '@fortawesome/fontawesome-free/js/regular';
 import '@fortawesome/fontawesome-free/js/brands';
 import swal from 'sweetalert';
 import { updateLocalStorage, loadLocalStorage } from './storage';
+import updateStatusItem from '../updateStatus';
 import { removeItem, addItem, updateDescription } from './addRemoveItem';
 
 let list = loadLocalStorage();
-
-const textDecorate = (index, text) => {
-  if (list[index].completed === true) {
-    text.style.textDecoration = 'line-through';
-  } else {
-    text.style.textDecoration = 'none';
-  }
-};
-
-const updateStatusItem = (index, text) => {
-  if (list[index].completed === true) {
-    list[index].completed = false;
-    textDecorate(index, text);
-  } else {
-    list[index].completed = true;
-    textDecorate(index, text);
-  }
-  updateLocalStorage(list);
-};
 
 const redraw = () => {
   const uList = document.getElementById('list');
@@ -72,7 +54,8 @@ const displayItems = () => {
     textDecorate(i, description);
 
     checkBox.addEventListener('click', () => {
-      updateStatusItem(i, listener);
+      list = updateStatusItem(i, listener, list);
+      updateLocalStorage(list);
       redraw();
       displayItems();
     });
@@ -152,5 +135,4 @@ addButton.addEventListener('click', () => {
 });
 }
 
-export { updateStatusItem };
 export default {displayItems, textDecorate};

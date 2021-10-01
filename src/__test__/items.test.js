@@ -1,4 +1,4 @@
-import { updateStatusItem, textDecorate } from '../items';
+import updateStatusItem from '../updateStatus';
 import { loadLocalStorage, updateLocalStorage } from '../storage';
 import localStorage from '../__mocks__/localStorage'
 
@@ -15,7 +15,7 @@ list = [{
     ];
 
 document.innerHTML = '<button id="clear"></button>';
-const index = list.index;
+const index = list.length - 1;
 const text = document.createElement('div');
 text.setAttribute('class', 'liContainer');
 const text2 = document.getElementsByClassName('liContainer');
@@ -37,8 +37,8 @@ describe('Load localeStorage', () => {
 });
 
 describe('It updates the status of the status of completed of the item', () => {
-    test('change the completed status from true to false', () => {
-        updateStatusItem(index, text);
+    test('change the completed status from true to false', () => {   
+        list = updateStatusItem(index, text, list);
         expect(text.style.textDecoration).toBe('line-through');
     })
 });
