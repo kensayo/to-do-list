@@ -1,6 +1,5 @@
 import { addItem, updateDescription, removeItem } from '../addRemoveItem';
 
-
 const list = [];
 const item1 = { description: 'testing1', completed: false, index: 1 };
 const item2 = { description: 'testing2', completed: false, index: 2 };
