@@ -6,7 +6,7 @@ export function textDecorate(index, text, list) {
   }
 }
 
-export function updateStatusItem(index, text, list) {
+export default function updateStatusItem(index, text, list) {
   if (list[index].completed === true) {
     list[index].completed = false;
     textDecorate(index, text, list);
@@ -16,3 +16,4 @@ export function updateStatusItem(index, text, list) {
   }
   return list;
 }
+
