@@ -38,7 +38,7 @@ describe('Load localeStorage', () => {
 
 describe('It updates the status of the status of completed of the item', () => {
     test('change the completed status from true to false', () => {
-        updateStatusItem(index, text)
+        updateStatusItem(index, text);
         expect(text.style.textDecoration).toBe('line-through');
     })
 });
