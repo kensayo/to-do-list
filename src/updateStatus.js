@@ -16,4 +16,3 @@ export default function updateStatusItem(index, text, list) {
   }
   return list;
 }
-
