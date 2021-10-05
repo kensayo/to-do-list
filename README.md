@@ -26,7 +26,7 @@ Minimalist To Do List using vanillla Javascript
 To get a local copy up and running follow these simple example steps.
 
 - Open terminal
-- Clone this project by command git clone  ```https://github.com/kensayo/to-do-list.git```
+- Clone this project by command git clone  ```https://github.com/kensayo/leaderbordWithAPI.git```
 - Open ```index.html``` in the browser (you can use Live Server extension in Visual Studio Code)
 - Download/Clone the repository files and navigate to root folder 
 - Open terminal and move to the root folder and then to ```dist``` folder
