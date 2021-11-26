@@ -4,28 +4,11 @@ import '@fortawesome/fontawesome-free/js/regular';
 import '@fortawesome/fontawesome-free/js/brands';
 import swal from 'sweetalert';
 import { updateLocalStorage, loadLocalStorage } from './storage';
+import * as update from './updateStatus';
+import clearCompleted from './clearCompleted';
 import { removeItem, addItem, updateDescription } from './addRemoveItem';
 
 let list = loadLocalStorage();
-
-const textDecorate = (index, text) => {
-  if (list[index].completed === true) {
-    text.style.textDecoration = 'line-through';
-  } else {
-    text.style.textDecoration = 'none';
-  }
-};
-
-const updateStatusItem = (index, text) => {
-  if (list[index].completed === true) {
-    list[index].completed = false;
-    textDecorate(index, text);
-  } else {
-    list[index].completed = true;
-    textDecorate(index, text);
-  }
-  updateLocalStorage(list);
-};
 
 const redraw = () => {
   const uList = document.getElementById('list');
@@ -49,7 +32,7 @@ const updateEdit = (i, value) => {
 const displayItems = () => {
   const listContainer = document.getElementById('list');
 
-  for (let i = 0; i < list.length; i += 1) {
+  list.forEach((i) => {
     const liItem = document.createElement('li');
     const checkBox = document.createElement('input');
     const description = document.createElement('span');
@@ -69,10 +52,11 @@ const displayItems = () => {
     edit.value = list[i].description;
     edit.setAttribute('class', 'edit-input');
 
-    textDecorate(i, description);
+    update.textDecorate(i, description);
 
     checkBox.addEventListener('click', () => {
-      updateStatusItem(i, listener);
+      list = update.updateStatusItem(i, listener, list);
+      updateLocalStorage(list);
       redraw();
       displayItems();
     });
@@ -118,36 +102,39 @@ const displayItems = () => {
     liItem.append(rm);
 
     listContainer.append(liItem);
-  }
+  });
 };
 
-const clearButton = document.getElementById('clear');
-clearButton.addEventListener('click', () => {
-  list = list.filter((completed) => completed.completed !== true);
-  redraw();
-  displayItems();
-  updateLocalStorage(list);
-});
-
-const task = document.getElementById('task');
-task.addEventListener('keyup', (event) => {
-  if (event.code === 'Enter' || event.code === 'NumpadEnter') {
-    event.preventDefault();
-    document.getElementById('addTask').click();
-  }
-});
-
-const addButton = document.getElementById('addTask');
-addButton.addEventListener('click', () => {
-  if (task.value === '') {
-    swal('The new task is empty', 'Make sure to add something you have to do');
-  } else {
-    list = addItem(list, task.value);
-    task.value = '';
+window.onload = () => {
+  const clearButton = document.getElementById('clear');
+  clearButton.addEventListener('click', () => {
+    list = clearCompleted(list);
+    // list = list.filter((completed) => completed.completed !== true);
     redraw();
     displayItems();
     updateLocalStorage(list);
-  }
-});
+  });
 
-export default displayItems;
+  const task = document.getElementById('task');
+  task.addEventListener('keyup', (event) => {
+    if (event.code === 'Enter' || event.code === 'NumpadEnter') {
+      event.preventDefault();
+      document.getElementById('addTask').click();
+    }
+  });
+
+  const addButton = document.getElementById('addTask');
+  addButton.addEventListener('click', () => {
+    if (task.value === '') {
+      swal('The new task is empty', 'Make sure to add something you have to do');
+    } else {
+      list = addItem(list, task.value);
+      task.value = '';
+      redraw();
+      displayItems();
+      updateLocalStorage(list);
+    }
+  });
+};
+
+export default { displayItems };
